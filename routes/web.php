@@ -54,10 +54,8 @@ Route::group(['middleware'=>['auth','checkRole:admin,kasir']],function(){
         Route::post('/save/{id}','TransactionController@save');
         Route::get('/cancel/{id}','TransactionController@cancelOrder');
         Route::get('/deleteItem/{id}','TransactionController@deleteItem');
-        Route::get('/updateItem/{id}','TransactionController@updateItem');
         Route::post('/saveUpdate/{id}','TransactionController@saveUpdate');
         Route::get('/detailOrder/{id}','TransactionController@detailOrder');
-        Route::get('/updateOrder/{id}','TransactionController@updateOrder');
         Route::post('/saveUpdateOrder/{id}','TransactionController@saveUpdateOrder');
         Route::get('/print/{id}','TransactionController@genarateTransaction');
     }); 

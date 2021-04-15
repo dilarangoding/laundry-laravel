@@ -182,8 +182,7 @@ class TransactionController extends Controller
 
     public function saveUpdate(Request $req, $id)
     {
-            $item = Transaction_detail::find($id);
-            
+            $item = Transaction_detail::find($id); 
             ($req->qty == 0 ? $item->delete() : $item->update(['qty'=>$req->qty]));
            return back()->with('success','Berhasil mengupdate item');
     }
@@ -206,12 +205,6 @@ class TransactionController extends Controller
            return view('transactions.detail', compact('order','subtotal'));
     }
 
-    public function updateOrder($id)
-    {
-           $order = Transaction::with(['member','outlet'])->find($id);
-           return view('transactions.update-order', compact('order'));
-    }
-
     public function saveUpdateOrder(Request $req, $id)
     {
         $order = Transaction::findOrFail($id);
@@ -230,10 +223,10 @@ class TransactionController extends Controller
                 'status'       => $req->status,
                 'paid'         => 'Dibayar'
                 ]);
-                return back()->with('success','Berhasil mengupdate pesanan');   
             }
         }
-
+        return back()->with('success','Berhasil mengupdate pesanan');   
+        
     }
 
     public function genarateTransaction($id)

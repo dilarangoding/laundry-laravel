@@ -164,7 +164,7 @@
                   <td>{{ $item->qty }}</td>
                   <td >Rp {{ number_format( $item->qty * $item->package->price) }}</td>
                   <td>
-                    <a href="#" data-id="{{ $item->id }}" class="btn btn-info btn-sm">Update</a>
+                    <a href="#" data-toggle="modal" data-target="#update-{{ $item->id }}" class="btn btn-info btn-sm">Update</a>
                     <a href="# " item-id="{{ $item->id }}" class="btn btn-danger btn-sm item">Hapus</a>
                   </td>
                 </tr>
@@ -285,115 +285,87 @@
 
 
 {{-- modal update item --}}
-  <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Update Item </h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<form action="" method="post" id="form">
-					@csrf
-					<div class="modal-body">
-						
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+@foreach ($transactions->detail as $ts)
 
-						<button type="button" class="btn btn-primary btn-update">Simpan</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div class="modal fade" id="update-{{ $ts->id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Buat Pesanan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url('transaction/saveUpdate', $ts->id) }}" method="post">
+          @csrf
+          <div class="form-group mt--4 mb-0">
+            <label for="package_id">Nama Paket</label>
+            <input type="text" readonly value="{{ $item->package->name }}" class="form-control">
+          </div>
+          <div class="form-group mb-1">
+            <label for="price">Harga paket</label>
+            <input type="text" readonly value="{{ $item->package->price }}" class="form-control">
+          </div>
+          <div class="form-group mb-1 ">
+            <label for="qty">Qty</label>
+            <input type="number" min="0" value="{{ $item->qty }}" name="qty" class="form-control">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endforeach
 {{-- end modal --}}
 @endsection
 
 @section('js')
 <script>
 
-    $('.delete').on('click',function(){
-			var id = $(this).attr('order-id');
-			var url = '{{URL::to('transaction/cancel')}}/' +id;
-			Swal.fire({
-				title: 'Yakin?',
-				text: "Yakin ingin membatalkan pesanan?",
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Ya',
-        cancelButtonText:'Tidak'
-			}).then((result) => {
-				if (result.value) {
-					window.location = url;
-				}
-			})
-		});
+      $('.delete').on('click',function(){
+        var id = $(this).attr('order-id');
+        var url = '{{URL::to('transaction/cancel')}}/' +id;
+        Swal.fire({
+          title: 'Yakin?',
+          text: "Yakin ingin membatalkan pesanan?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya',
+          cancelButtonText:'Tidak'
+        }).then((result) => {
+          if (result.value) {
+            window.location = url;
+          }
+        })
+      });
 
-    $('.item').on('click',function(){
-			var id = $(this).attr('item-id');
-			var url = '{{URL::to('transaction/deleteItem')}}/' +id;
-			Swal.fire({
-				title: 'Yakin?',
-				text: "Yakin ingin menghapus item?",
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Hapus'
-			}).then((result) => {
-				if (result.value) {
-					window.location = url;
-				}
-			})
-		});
+      $('.item').on('click',function(){
+        var id = $(this).attr('item-id');
+        var url = '{{URL::to('transaction/deleteItem')}}/' +id;
+        Swal.fire({
+          title: 'Yakin?',
+          text: "Yakin ingin menghapus item?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Hapus'
+        }).then((result) => {
+          if (result.value) {
+            window.location = url;
+          }
+        })
+      });
 
-    	$('.btn-info').on('click',function(){
-
-			let id = $(this).data('id');
-			var url = '{{URL::to('transaction/updateItem')}}/' +id;
-
-			$.ajax({
-				url:url,
-				method:"GET",
-				success:function(data){
-					$('#editmodal').find('.modal-body').html(data);
-					$('#editmodal').modal('show');
-				},
-				error:function(error){
-					console.log(error);
-				}
-			});
-		});
-
-		$('.btn-update').on('click',function(){
-			
-			var id = $('.form-group').find('.id').val()
-			var url = '{{URL::to('transaction/saveUpdate')}}/' +id;
-			var data = $("#form").serialize();
-		
-
-			$.ajax({
-				data:data,
-				url:url,
-				method:"POST",
-				success:function(data){
-					$('#editmodal').modal('hide');
-					window.location.reload();
-				},
-				error:function(error){
-					
-				}
-			});
-		});
-      
-   
-       
-      function addPeriod(nStr)
-      {
+      function addPeriod(nStr)  {
           nStr += '';
           x = nStr.split('.');
           x1 = x[0];
@@ -404,7 +376,6 @@
           }
           return x1 + x2;
       }
-
 
       $(document).on('change','#additional_cost', function(){
           var additional_cost  = parseInt($('#additional_cost').val());
@@ -441,12 +412,7 @@
           var bayar   = $('#tot').val('Rp ' + addPeriod(total));
               bayarr  = $('#total').val(total);
       });
-
-
-      
-      
-      
-        
+  
       $('#outlet_id').on('change', function() {
             $.ajax({
                 url: "{{ url('/api/package') }}",

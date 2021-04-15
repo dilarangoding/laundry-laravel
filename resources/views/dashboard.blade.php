@@ -36,8 +36,7 @@
             </div>
           </div>
           <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"></span>
-            <span class="text-nowrap"></span>
+            <a href="{{ url('outlet') }}">Lihat Selangkapnya</a>
           </p>
         </div>
       </div>
@@ -59,8 +58,7 @@
             </div>
           </div>
          <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"></span>
-            <span class="text-nowrap"></span>
+           <a href="{{ url('member') }}">Lihat Selangkapnya</a>
           </p>
         </div>
       </div>
@@ -82,8 +80,7 @@
             </div>
           </div>
           <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"></span>
-            <span class="text-nowrap"></span>
+            <a href="{{ url('user') }}">Lihat Selangkapnya</a>
           </p>
         </div>
       </div>
@@ -105,8 +102,7 @@
             </div>
           </div>
           <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"></span>
-            <span class="text-nowrap"></span>
+            <a href="{{ url('transaction') }}">Lihat Selangkapnya</a>
           </p>
         </div>
       </div>
@@ -313,7 +309,7 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Pesanan terbaru</h3>
+              <h3 class="mb-0">Pesanan Baru</h3>
             </div>
             <div class="col text-right">
               <a href="{{ url('transaction') }}" class="btn btn-sm btn-primary">Lihat</a>

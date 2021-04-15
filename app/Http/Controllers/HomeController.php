@@ -102,7 +102,11 @@ class HomeController extends Controller
     public function delete($id)
     {
         $user = User::find($id);
-        $user->delete();
+        if($user->role == 'admin'){
+            return back()->with('error','user '.$user->name.' tidak dapat dihapus');
+        }else{
+            $user->delete();
+        }
         return back()->with('success','Data berhasil dihapus');
     }
 
