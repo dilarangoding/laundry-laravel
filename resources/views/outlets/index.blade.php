@@ -68,7 +68,7 @@
               </tr>
             </thead>
             <tbody>
-               @foreach ($outlets as $item)
+               @forelse ($outlets as $item)
                <tr>
                  <td>{{ $outlets->count() * ( $outlets->currentPage() - 1) + $loop->iteration }}</td>
                  <td>{{ $item->name }}</td>
@@ -78,8 +78,12 @@
                    <a href="{{ url('outlet/edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
                    <a href="#" outlet-id="{{ $item->id }}" class="btn btn-danger btn-sm delete">Hapus</a>
                  </td>
-               </tr>    
-               @endforeach
+               </tr>   
+               @empty
+               <tr>
+                 <td colspan="5" class="text-center">Tidak ada data</td>
+               </tr>
+               @endforelse
             </tbody>
           </table>
           <div class="float-right">

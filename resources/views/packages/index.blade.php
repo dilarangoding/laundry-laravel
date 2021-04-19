@@ -49,7 +49,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($packages as $item)
+              @forelse ($packages as $item)
                   <tr>
 
                     <td>{{ $packages->count() * ($packages->currentPage() - 1) + $loop->iteration }}</td>
@@ -62,7 +62,11 @@
                       <a href="#" package-id="{{ $item->id }}" class="btn btn-danger btn-sm delete">Hapus</a>
                     </td>
                   </tr>
-              @endforeach
+              @empty
+                  <tr>
+                    <td colspan="6" class="text-center">Tidak ada data</td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
           <div class="float-right">

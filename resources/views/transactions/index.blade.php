@@ -51,7 +51,7 @@
               </tr>
             </thead>
             <tbody>
-             @foreach ($transactions as $item)
+             @forelse ($transactions as $item)
              
                <tr>
                  <td>
@@ -88,8 +88,11 @@
                    <a href="{{ url('transaction/print', $item->id) }}" target="_blank" class="btn btn-success btn-sm">Print</a>
                  </td>
                </tr>
-          
-             @endforeach
+             @empty 
+               <tr>
+                 <td colspan="7" class="text-center">Tidak ada data</td>
+               </tr>
+             @endforelse
             </tbody>
           </table>
           <div class="float-right">

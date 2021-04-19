@@ -486,7 +486,7 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $pgn->name }}</td>
                   <td>{{ $pgn->email }}</td>
-                  <td>{{( $pgn->outlet_id ? $pgn->outlet_id : '-')  }}</td>
+                  <td>{{( $pgn->outlet_id ? $pgn->outlet->name : '-')  }}</td>
                   <td>{{ $pgn->role }}</td>
                 </tr>
                 @empty

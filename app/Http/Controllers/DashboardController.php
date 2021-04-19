@@ -51,7 +51,8 @@ class DashboardController extends Controller
         // Owner 
         
         $cabang   = Outlet::all();
-        $pengguna = User::all();
+        $pengguna = User::with('outlet')->get();
+       
         $pelanggan= Member::all();
         $income   = Transaction::with(['member','outlet'])
                     ->where('paid','dibayar')

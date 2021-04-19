@@ -115,7 +115,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($members as $member)
+              @forelse($members as $member)
                <tr>
                  <td>{{ $members->count() * ($members->currentPage() - 1) + $loop->iteration }}</td>
                  <td>{{ $member->name }}</td>
@@ -126,8 +126,12 @@
                    <a href="{{ url('member/edit', $member->id) }}" class="btn btn-warning btn-sm">Edit</a>
                    <a href="#" member-id="{{ $member->id }}" class="btn btn-danger btn-sm delete">Hapus</a>
                  </td>
-                </tr>
-              @endforeach
+               </tr>
+              @empty 
+               <tr>
+                 <td colspan="5" class="text-center">Tidak ada data</td>
+               </tr>
+              @endforelse
             </tbody>
           </table>
           <div class="float-right">
