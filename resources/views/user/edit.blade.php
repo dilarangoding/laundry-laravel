@@ -22,7 +22,7 @@
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Tambah User</h3>
+              <h3 class="mb-0">Edit User</h3>
             </div>
           </div>
         </div>
@@ -65,19 +65,8 @@
                 <span class="text-danger">{{ $errors->first('password') }}</span>
             </div>
 
-            <div class="form-group">
-              <label for="outlet">Outlet</label>
-              <select name="outlet_id" id="outlet" class="form-control @error('outlet_id') is-invalid @enderror">
-                <option disabled selected >Pilih outlet</option>
-                @foreach ($outlets as $outlet)
-                <option value="{{ $outlet->id }}" {{ $user->outlet_id == $outlet->id?'selected':'' }}>
-                  {{ $outlet->name }}</option>    
-                @endforeach
-              </select>
-               <span class="text-danger">{{ $errors->first('outlet_id') }}</span>
-            </div>
 
-            <div class="form-group">
+             <div class="form-group">
               <label for="role">Level</label>
               <select name="role" id="role" class="form-control @error('role') is-invalid @enderror">
                 <option disabled selected>Pilih level</option>
@@ -87,6 +76,21 @@
               </select>
                <span class="text-danger">{{ $errors->first('role') }}</span>
             </div>
+
+
+            <div class="form-group">
+              <label for="outlet">Outlet</label>
+              <select name="outlet_id"  {{ $user->role != 'kasir' ?'disabled' :'' }}  id="outlet" class="form-control @error('outlet_id') is-invalid @enderror">
+                <option disabled selected >Pilih outlet</option>
+                @foreach ($outlets as $outlet)
+                <option value="{{ $outlet->id }}" {{ $user->outlet_id == $outlet->id?'selected':'' }}>
+                  {{ $outlet->name }}</option>    
+                @endforeach
+              </select>
+               <span class="text-danger">{{ $errors->first('outlet_id') }}</span>
+            </div>
+           
+
 
             <div class="form-group">
               <button class="btn btn-primary btn-block">Simpan</button>
@@ -98,4 +102,28 @@
     </div> 
   </div>  
 </div>  
+@endsection
+
+@section('js')
+    
+  <script>
+
+    $('#role').on('change',function() {
+         
+          let role = $('#role').val();
+          
+          if(role == 'admin' || role == 'owner'){
+              $('#outlet').prop('disabled', true);
+              $('#outlet').append('<option value="">Pilih Paket</option>')
+              $('#outlet').val('');
+              $('.span').prop('hidden', false);
+          }else{
+               $('#outlet').prop('disabled', false);
+                $('.span').prop('hidden', true);
+          }
+        
+      });
+
+  </script>
+
 @endsection
