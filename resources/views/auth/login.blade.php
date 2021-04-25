@@ -69,7 +69,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary btn-block my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary btn-block my-4">Log in</button>
                 </div>
               </form>
             </div>

@@ -7,10 +7,31 @@
         <td>{{ $order->invoice }}</td>
       </tr>
       <tr>
+        <td>Kasir</td>
+        <td>:</td>
+        <td>{{ $order->user->name }}</td>
+      </tr>
+      <tr>
+        <td width="45%">Pelanggan</td>
+        <td width="20px">:</td>
+        <td>{{ $order->member->name }}</td>
+      </tr>
+      <tr>
         <td>Outlet</td>
         <td>:</td>
         <td>{{ $order->outlet->name }}</td>
       </tr>
+      <tr>
+        <td>Status Pesanan</td>
+        <td>:</td>
+        <td><span class="badge badge-success">{{ $order->status }}</span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+     
       <tr>
         <td>Tanggal Pemesanan</td>
         <td>:</td>
@@ -27,36 +48,6 @@
         <td>{{ ($order->payment_date != NULL? date('d-m-Y', strtotime($order->payment_date)) : '-') }}</td>
       </tr>
       <tr>
-        <td>Kasir</td>
-        <td>:</td>
-        <td>{{ $order->user->name }}</td>
-      </tr>
-    </table>
-  </div>
-  <div class="col-md-6">
-    <div class="table-responsive">
-      <table class="table table-borderless">
-      <tr>
-        <td width="45%">Pelanggan</td>
-        <td width="20px">:</td>
-        <td>{{ $order->member->name }}</td>
-      </tr>
-      <tr>
-        <td>Biaya Tambahan</td>
-        <td>:</td>
-        <td>Rp {{($order->additional_cost != NULL? number_format($order->additional_cost) : '-') }}</td>
-      </tr>
-      <tr>
-        <td>Pajak</td>
-        <td>:</td>
-        <td>Rp {{ ($order->tax != NULL? number_format($order->tax) : '-') }} </td>
-      </tr>
-      <tr>
-        <td >Diskon</td>
-        <td >:</td>
-        <td>{{ ($order->discount != NULL? $order->discount : '-')}}%</td>
-      </tr>
-      <tr>
         <td>Keterangan Bayar</td>
         <td>:</td>
         <td>{{ $order->paid }}</td>
@@ -70,14 +61,7 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="form-group">
-      <input type="text" value="{{ $order->status }}" class="form-control" readonly>
-    </div>
-    <hr>
-  </div>
-</div>
+<hr>
 <div class="row">
   <div class="col-md-12">
     <table class="table table-borderless text-center">
@@ -106,6 +90,21 @@
   </div>
   <div class="col-md-6 offset-6 text-center mt-3 mb--5">
     <table class="table table-borderless">
+      <tr>
+        <td>Biaya Tambahan</td>
+        <td>:</td>
+        <td>Rp {{($order->additional_cost != NULL? number_format($order->additional_cost) : '-') }}</td>
+      </tr>
+      <tr>
+        <td>Pajak</td>
+        <td>:</td>
+        <td>Rp {{ ($order->tax != NULL? number_format($order->tax) : '-') }} </td>
+      </tr>
+      <tr>
+        <td >Diskon</td>
+        <td >:</td>
+        <td>{{ ($order->discount != NULL? $order->discount : '-')}}%</td>
+      </tr>
       <tr>
         <td>Total</td>
         <td>:</td>

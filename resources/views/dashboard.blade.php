@@ -572,7 +572,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-          $('.table').DataTable( {
+          $('.table-hover').DataTable( {
       
               "paging": false,
               "info"  : false,

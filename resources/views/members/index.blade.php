@@ -20,70 +20,7 @@
 
   <div class="row">
 
-    {{-- <div class="col-xl-4">
-
-      <div class="card">
-
-        <div class="card-header">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="mb-0">Tambah Pelanggan</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-body">
-          <form action="{{ url('member') }}" method="post">
-            @csrf
-            
-            <div class="form-group">
-              <label for="name">Nama Pelanggan</label>
-              <input
-               type="text" 
-               class="form-control {{ $errors->first('name')?'is-invalid':'' }}" 
-               name="name" 
-               required 
-               placeholder="Masukan nama pelanggan">
-              <span class="text-danger">{{ $errors->first('name') }}</span>
-            </div>
-
-            <div class="form-group">
-              <label for="gender">Jenis kelamin</label>
-              <select name="gender" id="gender" class="form-control">
-                <option value="" selected disabled>Pilih Jenis kelamin</option>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-              </select>
-              <span class="text-danger">{{ $errors->first('gender') }}</span>
-            </div>
-
-            <div class="form-group">
-              <label for="addres">Alamat </label>
-              <textarea name="address" id="address" col="30" rows="2" class="form-control {{ $errors->first('address')?'is-invalid':'' }}" required  placeholder="Masukan alamat "></textarea>
-              <span class="text-danger">{{ $errors->first('address') }}</span>
-            </div>
-
-            <div class="form-group">
-              <label for="phone">No Tlpn</label>
-              <input
-               type="number" 
-               name="phone" 
-               class="form-control {{ $errors->first('phone')?'is-invalid':'' }}" 
-               placeholder="Masukan no tlpn" 
-               required>
-               <span class="text-danger">{{ $errors->first('phone') }}</span>
-            </div>
-
-            <div class="form-group">
-              <button class="btn btn-primary btn-block">Simpan</button>
-            </div>
-
-          </form>
-        </div>
-
-      </div>
-    </div> --}}
-
+    
     <div class="col-xl-12">
       
       <div class="card">
@@ -154,7 +91,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Outlet</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

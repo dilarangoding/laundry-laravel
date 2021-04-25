@@ -87,11 +87,9 @@
                   {{ $outlet->name }}</option>    
                 @endforeach
               </select>
+              <span class="text-danger span" hidden>Tidak wajib dipilih</span>
                <span class="text-danger">{{ $errors->first('outlet_id') }}</span>
             </div>
-           
-
-
             <div class="form-group">
               <button class="btn btn-primary btn-block">Simpan</button>
             </div>
@@ -114,7 +112,7 @@
           
           if(role == 'admin' || role == 'owner'){
               $('#outlet').prop('disabled', true);
-              $('#outlet').append('<option value="">Pilih Paket</option>')
+              $('#outlet').append('<option value="">Pilih Outlet</option>')
               $('#outlet').val('');
               $('.span').prop('hidden', false);
           }else{
