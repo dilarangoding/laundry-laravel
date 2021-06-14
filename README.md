@@ -1,7 +1,7 @@
 
 ## Aplikasi Laundry Laravel
 
-Ini mah tugas buat ukk kelas 12 udah si gitu aja. Oh iya ada beberapa fitur diantaranya :
+Fitur:
 
 - CRUD Outlet
 - CRUD Member
